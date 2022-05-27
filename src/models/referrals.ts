@@ -31,10 +31,6 @@ module.exports = sequelize => {
     {
       indexes: [
         {
-          unique: true,
-          fields: ['code', 'address'],
-        },
-        {
           fields: ['address'],
         },
       ]
