@@ -17,6 +17,16 @@ module.exports = sequelize => {
         unique: true,
         type: DataTypes.STRING,
       },
+      referrals: {
+        allowNull: false,
+        defaultValue: 0,
+        type: DataTypes.DECIMAL,
+      },
+      commissions: {
+        allowNull: false,
+        defaultValue: 0,
+        type: DataTypes.DECIMAL,
+      },
     },
     {
       indexes: [

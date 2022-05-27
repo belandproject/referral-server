@@ -12,6 +12,8 @@ export const referUser = async ctx => {
     referrer: referral.address,
     user: ctx.state.user.user,
   });
+  referral.referrals += 1;
+  await referUser.save();
   ctx.body = referUser;
 };
 
