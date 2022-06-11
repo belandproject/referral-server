@@ -4,11 +4,19 @@ const { referral: Referral } = database.models;
 const uid = new ShortUniqueId({ length: 6 });
 
 export const createReferralLink = async ctx => {
-  const referral = await Referral.create({
-    code: uid(),
-    address: ctx.state.user.user,
-  });
-  ctx.body = referral;
+  let retry = 0;
+  while (retry < 5) {
+    try {
+      const referral = await Referral.create({
+        code: uid(),
+        address: ctx.state.user.user,
+      });
+      ctx.body = referral;
+      return;
+    } catch {
+      retry++;
+    }
+  }
 };
 
 export const listReferrals = async ctx => {
